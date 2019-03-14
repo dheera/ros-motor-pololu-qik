@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+import rospy
+import time
+import serial
+import sys
+from std_msgs.msg import Float32MultiArray, Float32
+
+device_id = int(sys.argv[1])
+
+if __name__ == "__main__":
+    ser = serial.Serial('/dev/qik', 9600)
+    #ser.open()
+    ser.write(bytearray([0x82]))
+    time.sleep(.1)
+    print(ser.read())
+    time.sleep(.1)
+    ser.write(bytearray([0x84, 0, device_id, 0x55, 0x2A]))
+    time.sleep(.1)
+    print(ser.read())
+    ser.write(bytearray([0x84, 1, 0, 0x55, 0x2A]))
+    time.sleep(.1)
+    print(ser.read())
+    ser.write(bytearray([0x84, 2, 1, 0x55, 0x2A]))
+    time.sleep(.1)
+    print(ser.read())
+    ser.write(bytearray([0x84, 3, 1, 0x55, 0x2A]))
+    time.sleep(.1)
+    print(ser.read())
