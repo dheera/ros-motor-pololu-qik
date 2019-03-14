@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+# Connect only a single Pololu Qik to the UART and run this script to configure it.
+# ./configure_driver.py <device_id>
+# Use device_id = 0 if you only have one Qik.
+
+# If you have multiple Qiks, configure each one separately by connecting each one by itself
+# to the UART and running this script with device_ids 0, 1, 2, ...
+# After all configurations are complete you can reconnect them all to the UART at the same
+# time.
+
 import rospy
 import time
 import serial
